@@ -6,17 +6,30 @@
  * in the #totalDebit and #totalCredit input boxes.
  */
 function computeResult() {
-  var totalCredit = parseFloat($("#credit01").val()) +
-                    parseFloat($("#credit02").val()) +
-                    parseFloat($("#credit03").val()) +
-                    parseFloat($("#credit04").val()) +
-                    parseFloat($("#credit05").val());
-  var totalDebit =  parseFloat($("#debit01").val()) +
-                    parseFloat($("#debit02").val()) +
-                    parseFloat($("#debit03").val()) +
-                    parseFloat($("#debit04").val()) +
-                    parseFloat($("#debit05").val());
 
+  //pull the values from the page's form
+  var credit1 = parseFloat($("#credit01").val());
+  var credit2 = parseFloat($("#credit02").val());
+  var credit3 = parseFloat($("#credit03").val());
+  var credit4 = parseFloat($("#credit04").val());
+  var credit5 = parseFloat($("#credit05").val());
+
+  var debit1 = parseFloat($("#debit01").val());
+  var debit2 = parseFloat($("#debit02").val());
+  var debit3 = parseFloat($("#debit03").val());
+  var debit4 = parseFloat($("#debit04").val());
+  var debit5 = parseFloat($("#debit05").val());
+
+  //compute the totals for each
+  var totalCredit = credit1 + credit2 + credit3 + credit4 + credit5;
+  var totalDebit = debit1 + debit2 + debit3 + debit4 + debit5;
+
+  //check for negative values
+  if(credit1 < 0 || debit1 < 0) {
+    raiseError("You cannot enter negative values.");
+  }
+
+  //place the totals in the page's form and animate them
   $("#totalDebit").val(totalDebit.toFixed(2)).hide().fadeIn("slow");
   $("#totalCredit").val(totalCredit.toFixed(2)).hide().fadeIn("slow");
 
